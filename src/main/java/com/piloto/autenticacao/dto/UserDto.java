@@ -9,6 +9,9 @@ public class UserDto implements Serializable {
     private String cpf;
     private String senha;
 
+    public UserDto() {
+    }
+
     public UserDto(String cpf, String senha) {
         this.cpf = cpf;
         this.senha = senha;
