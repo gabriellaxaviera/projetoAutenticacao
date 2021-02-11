@@ -1,4 +1,6 @@
 package com.piloto.autenticacao.dto;
 
-public class UserDto {
+import java.io.Serializable;
+
+public class UserDto implements Serializable {
 }
