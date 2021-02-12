@@ -1,12 +1,12 @@
 package com.piloto.autenticacao.handler;
 
-import com.piloto.autenticacao.error.CpfExistsException;
-import com.piloto.autenticacao.error.ExceptionDetails;
-import com.piloto.autenticacao.error.NotAuthorizedException;
-import com.piloto.autenticacao.error.ResourceNotFoundException;
+import com.piloto.autenticacao.error.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 public class RestExceptionHandler {
@@ -44,4 +44,37 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(exceptionDetails, HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(HttpMediaTypeException.class)
+    public ResponseEntity<?> handleMediaType(HttpMediaTypeException media){
+
+        ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
+                .newBuilder()
+                .message(media.getMessage())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<?> handleRequestMethod(HttpRequestMethodNotSupportedException media){
+
+        ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
+                .newBuilder()
+                .message(media.getMessage())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.METHOD_NOT_ALLOWED);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<?> handleArgument(MethodArgumentTypeMismatchException argument){
+
+        ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
+                .newBuilder()
+                .message(argument.getMessage())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+    
 }

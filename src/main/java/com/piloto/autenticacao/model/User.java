@@ -22,11 +22,9 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull(message = "Por favor, adicione um CPF")
     @CPF
     private String cpf;
 
-    @Min(8)
     private String senha;
 
     public User() {
