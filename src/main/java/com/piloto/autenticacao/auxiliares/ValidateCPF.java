@@ -2,12 +2,9 @@ package com.piloto.autenticacao.auxiliares;
 
 import com.piloto.autenticacao.dto.UserDto;
 import com.piloto.autenticacao.model.User;
-import com.piloto.autenticacao.services.CadastroService;
+import com.piloto.autenticacao.services.RegisterService;
 import com.piloto.autenticacao.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.InputMismatchException;
 
 //@Service
 public class ValidateCPF {
@@ -15,7 +12,7 @@ public class ValidateCPF {
     @Autowired
     LoginService login;
     @Autowired
-    CadastroService cadastro;
+    RegisterService cadastro;
 
 
     public void validateCpf(String cpf, User user)
