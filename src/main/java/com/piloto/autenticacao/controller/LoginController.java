@@ -3,6 +3,7 @@ package com.piloto.autenticacao.controller;
 import com.piloto.autenticacao.dto.UserDto;
 import com.piloto.autenticacao.model.User;
 import com.piloto.autenticacao.services.LoginService;
+import com.piloto.autenticacao.services.ValidateCPF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,12 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
+    private ValidateCPF validate;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = {"application/json"})
     public ResponseEntity login(@RequestBody UserDto userDto) throws ParseException {
 
-        System.out.println(userDto);
-        loginService.validateCpf(userDto);
+        validate.validateCpf(userDto.getCpf(), userDto);
         return ResponseEntity.ok().body("ok");
     }
 
