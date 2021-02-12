@@ -1,9 +1,13 @@
 package com.piloto.autenticacao.model;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 @Entity
@@ -12,7 +16,11 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @CPF
     private String cpf;
+
+    @Min(8)
     private String senha;
 
     public User() {
