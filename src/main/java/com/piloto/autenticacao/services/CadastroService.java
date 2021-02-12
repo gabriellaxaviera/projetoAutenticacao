@@ -9,18 +9,19 @@ import org.springframework.stereotype.Service;
 public class CadastroService {
 
     @Autowired
-    UserRepository repo;
+    UserRepository repository;
 
-    public void insert(User usuario){
+    public User insert(User usuario) {
 
-        User userCadastrado = repo.findByCpf(usuario.getCpf());
+        User userCadastrado = repository.findByCpf(usuario.getCpf());
 
         if (userCadastrado == null){
-            repo.save(usuario);
+            repository.save(usuario);
             System.out.println("OK, CADASTRADO");
         }
         else if (userCadastrado.getCpf() == usuario.getCpf()){
             System.out.println("JA EXISTE");
         }
+        return userCadastrado;
     }
 }
