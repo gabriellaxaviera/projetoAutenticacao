@@ -19,8 +19,7 @@ public class User implements Serializable {
     @CPF
     private String cpf;
 
-    @Size(min = 8)
-    @NotEmpty
+    @Size(min = 8, message = "A senha deve conter pelo menos 8 caracteres")
     private String senha;
 
     public User() {

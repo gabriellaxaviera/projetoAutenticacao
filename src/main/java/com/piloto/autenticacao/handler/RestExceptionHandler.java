@@ -5,8 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+import javax.validation.UnexpectedTypeException;
 
 @ControllerAdvice
 public class RestExceptionHandler {
@@ -75,6 +78,46 @@ public class RestExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UnexpectedTypeException.class)
+    public ResponseEntity<?> handleValid(UnexpectedTypeException valid){
+        ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
+                .newBuilder()
+                .message(valid.getMessage())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleCPFvalid(MethodArgumentNotValidException valid){
+        //ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
+          //      .newBuilder()
+            //    .message(valid.getMessage())
+              //  .build();
+        if (valid.getMessage().contains("default message [invalid Brazilian individual taxpayer registry number (CPF)]]"))
+        {
+            ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
+                    .newBuilder()
+                    .message("CPF inválido, tente novamente")
+                    .build();
+
+            return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+        }
+
+        else if (valid.getMessage().contains("default message [A senha deve conter pelo menos 8 caracteres]]"))
+        {
+            ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
+                    .newBuilder()
+                    .message("A senha deve conter pelo menos 8 caracteres, tente novamente")
+                    .build();
+
+            return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+        }
+
+        else
+            return null;
     }
 
 }

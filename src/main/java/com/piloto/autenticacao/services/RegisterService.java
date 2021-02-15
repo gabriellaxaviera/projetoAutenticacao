@@ -24,6 +24,5 @@ public class RegisterService {
             throw new CpfExistsException("Usuário já cadastrado no sistema");
         }
 
-        //if (userCadastrado.getCpf() == usuario.getCpf())
     }
 }

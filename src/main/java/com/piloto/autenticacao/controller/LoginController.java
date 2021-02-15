@@ -18,7 +18,7 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = {"application/json"})
-    public ResponseEntity login(@RequestBody UserDto userDto) {
+    public ResponseEntity login(@Valid @RequestBody UserDto userDto) {
 
         loginService.login(userDto);
 
