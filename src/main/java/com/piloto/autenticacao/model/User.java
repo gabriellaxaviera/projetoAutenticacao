@@ -17,8 +17,10 @@ public class User implements Serializable {
     private Integer id;
 
     @CPF
+    @NotNull(message = "CPF É OBRIGATORIO")
     private String cpf;
 
+    @NotNull(message = "SENHA É OBRIGATORIA")
     @Size(min = 8, message = "A senha deve conter pelo menos 8 caracteres")
     private String senha;
 
@@ -46,7 +48,6 @@ public class User implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
 
     public Integer getId() {
         return id;
