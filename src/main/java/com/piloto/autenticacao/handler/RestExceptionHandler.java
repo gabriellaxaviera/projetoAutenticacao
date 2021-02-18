@@ -14,7 +14,7 @@ import javax.validation.UnexpectedTypeException;
 @ControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
+     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException exception) {
 
         ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
@@ -35,6 +35,7 @@ public class RestExceptionHandler {
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_ACCEPTABLE);
     }
+
 
     @ExceptionHandler(NotAuthorizedException.class)
     public ResponseEntity<?> handleNotAuthorizedException(NotAuthorizedException exception) {
@@ -91,11 +92,8 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleCPFvalid(MethodArgumentNotValidException valid){
-        //ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
-          //      .newBuilder()
-            //    .message(valid.getMessage())
-              //  .build();
+    public Object handleCPFvalid(MethodArgumentNotValidException valid){
+
         if (valid.getMessage().contains("default message [invalid Brazilian individual taxpayer registry number (CPF)]]"))
         {
             ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
@@ -116,8 +114,13 @@ public class RestExceptionHandler {
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
         }
 
-        else
-            return null;
+        else if (valid.getMessage().contains("default message [Campo obrigatorio]]")) {
+            ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
+                    .newBuilder()
+                    .message("CPF e senha sao campos obrigatorios")
+                    .build();
+            return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+        }
+        return valid.getMessage().contains("campos obrigatorios");
     }
-
 }

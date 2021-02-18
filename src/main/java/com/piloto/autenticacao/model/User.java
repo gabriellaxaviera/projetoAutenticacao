@@ -17,10 +17,10 @@ public class User implements Serializable {
     private Integer id;
 
     @CPF
-    @NotNull(message = "CPF É OBRIGATORIO")
+    @NotNull(message = "Campo obrigatorio")
     private String cpf;
 
-    @NotNull(message = "SENHA É OBRIGATORIA")
+    @NotNull(message = "Campo obrigatorio")
     @Size(min = 8, message = "A senha deve conter pelo menos 8 caracteres")
     private String senha;
 
