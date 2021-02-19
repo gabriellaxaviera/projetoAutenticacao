@@ -121,6 +121,6 @@ public class RestExceptionHandler {
                     .build();
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
         }
-        return valid.getMessage().contains("campos obrigatorios");
+        return null;
     }
 }
