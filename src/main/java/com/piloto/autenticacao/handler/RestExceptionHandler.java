@@ -98,26 +98,26 @@ public class RestExceptionHandler {
         {
             ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
                     .newBuilder()
-                    .message("CPF inválido, tente novamente")
+                    .message("Invalid taxpayer identification numbers")
                     .build();
 
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
         }
 
-        else if (valid.getMessage().contains("default message [A senha deve conter pelo menos 8 caracteres]]"))
+        else if (valid.getMessage().contains("default message [Try one with at least 8 characters]]"))
         {
             ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
                     .newBuilder()
-                    .message("A senha deve conter pelo menos 8 caracteres, tente novamente")
+                    .message("Try one with at least 8 characters")
                     .build();
 
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
         }
 
-        else if (valid.getMessage().contains("default message [Campo obrigatorio]]")) {
+        else if (valid.getMessage().contains("default message [This field is required]]")) {
             ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
                     .newBuilder()
-                    .message("CPF e senha sao campos obrigatorios")
+                    .message("These field are required")
                     .build();
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
         }
