@@ -114,10 +114,10 @@ public class RestExceptionHandler {
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
         }
 
-        else if (valid.getMessage().contains("default message [This field is required]]")) {
+        else if (valid.getMessage().contains("default message [These field are required]]")) {
             ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
                     .newBuilder()
-                    .message("These field are required")
+                    .message("These fields are required")
                     .build();
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
         }

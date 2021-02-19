@@ -17,10 +17,10 @@ public class User implements Serializable {
     private Integer id;
 
     @CPF
-    @NotNull(message = "These field are required")
+    @NotNull(message = "These fields are required")
     private String cpf;
 
-    @NotNull(message = "These field are required")
+    @NotNull(message = "These fields are required")
     @Size(min = 8, message = "Try one with at least 8 characters")
     private String senha;
 
