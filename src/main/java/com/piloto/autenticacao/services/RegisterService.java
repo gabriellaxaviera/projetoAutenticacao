@@ -20,7 +20,7 @@ public class RegisterService {
             repository.save(usuario);
         }
         else {
-            throw new CpfExistsException("Usuário já cadastrado no sistema");
+            throw new CpfExistsException("User is already registered");
         }
     }
 }

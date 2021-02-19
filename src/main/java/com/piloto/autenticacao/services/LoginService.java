@@ -21,12 +21,12 @@ public class LoginService {
 
         if (usuario == null)
         {
-            throw new ResourceNotFoundException("Usuário não encontrado");
+            throw new ResourceNotFoundException("User not found");
         }
         else
         {
             if (!(usuario.getSenha().equals(userDto.getSenha())))
-                throw new NotAuthorizedException("Senha inválida");
+                throw new NotAuthorizedException("Invalid password");
         }
 
     }

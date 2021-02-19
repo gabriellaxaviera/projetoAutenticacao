@@ -19,7 +19,7 @@ public class RegisterController {
 
         service.insert(usuario);
 
-        return "Usuário cadastrado";
+        return "User registered successfully";
     }
     
 }
