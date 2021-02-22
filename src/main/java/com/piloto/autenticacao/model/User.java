@@ -17,11 +17,11 @@ public class User implements Serializable {
     private Integer id;
 
     @CPF
-    @NotNull(message = "Campo obrigatorio")
+    @NotNull(message = "These fields are required")
     private String cpf;
 
-    @NotNull(message = "Campo obrigatorio")
-    @Size(min = 8, message = "A senha deve conter pelo menos 8 caracteres")
+    @NotNull(message = "These fields are required")
+    @Size(min = 8, message = "Try one with at least 8 characters")
     private String password;
 
     public User() {

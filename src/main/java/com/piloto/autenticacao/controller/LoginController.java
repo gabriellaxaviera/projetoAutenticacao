@@ -22,7 +22,7 @@ public class LoginController {
 
         loginService.login(userDto);
 
-        return ResponseEntity.ok().body("Usuário logado");
+        return ResponseEntity.ok().body("You have successfully logged in");
     }
 
 }
