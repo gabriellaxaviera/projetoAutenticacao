@@ -25,7 +25,7 @@ public class LoginService {
         }
         else
         {
-            if (!(usuario.getSenha().equals(userDto.getSenha())))
+            if (!(usuario.getPassword().equals(userDto.getPassword())))
                 throw new NotAuthorizedException("Senha inválida");
         }
 

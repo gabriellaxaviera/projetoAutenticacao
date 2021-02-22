@@ -7,14 +7,14 @@ import java.io.Serializable;
 public class UserDto implements Serializable {
 
     private String cpf;
-    private String senha;
+    private String password;
 
     public UserDto() {
     }
 
-    public UserDto(String cpf, String senha) {
+    public UserDto(String cpf, String password) {
         this.cpf = cpf;
-        this.senha = senha;
+        this.password = password;
     }
 
     public String getCpf() {
@@ -25,16 +25,16 @@ public class UserDto implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public UserDto(User user) {
         cpf = user.getCpf();
-        senha = user.getSenha();
+        password = user.getPassword();
     }
 }
