@@ -3,6 +3,7 @@ package com.piloto.autenticacao.controller;
 import com.piloto.autenticacao.model.User;
 import com.piloto.autenticacao.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,12 +15,12 @@ public class RegisterController {
     @Autowired
     private RegisterService service;
 
-    @RequestMapping(value = "/cadastro", method = RequestMethod.POST, produces = {"application/json"})
-    public String cadastro(@Valid @RequestBody User usuario){
+    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = {"application/json"})
+    public ResponseEntity cadastro(@Valid @RequestBody User user){
 
-        service.insert(usuario);
+        service.insert(user);
 
-        return "Usuário cadastrado";
+        return ResponseEntity.ok().body("Usuário cadastrado");
     }
     
 }
