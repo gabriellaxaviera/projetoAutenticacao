@@ -12,15 +12,15 @@ public class RegisterService {
     @Autowired
     UserRepository repository;
 
-    public void insert(User usuario) {
+    public void insert(User user) {
 
-        User userCadastrado = repository.findByCpf(usuario.getCpf());
+        User registeredUser = repository.findByCpf(user.getCpf());
 
-        if (userCadastrado == null){
-            repository.save(usuario);
+        if (registeredUser == null){
+            repository.save(user);
         }
         else {
-            throw new CpfExistsException("Usuário já cadastrado no sistema");
+            throw new CpfExistsException("User is already registered");
         }
     }
 }

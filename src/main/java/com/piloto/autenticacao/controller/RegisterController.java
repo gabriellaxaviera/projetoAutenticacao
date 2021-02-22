@@ -14,10 +14,10 @@ public class RegisterController {
     @Autowired
     private RegisterService service;
 
-    @RequestMapping(value = "/cadastro", method = RequestMethod.POST, produces = {"application/json"})
-    public String cadastro(@Valid @RequestBody User usuario){
+    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = {"application/json"})
+    public String registration(@Valid @RequestBody User user){
 
-        service.insert(usuario);
+        service.insert(user);
 
         return "User registered successfully";
     }

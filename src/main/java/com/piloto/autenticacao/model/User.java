@@ -22,14 +22,14 @@ public class User implements Serializable {
 
     @NotNull(message = "These fields are required")
     @Size(min = 8, message = "Try one with at least 8 characters")
-    private String senha;
+    private String password;
 
     public User() {
     }
 
-    public User(String cpf, String senha, Integer id) {
+    public User(String cpf, String password, Integer id) {
         this.cpf = cpf;
-        this.senha = senha;
+        this.password = password;
         this.id = id;
     }
 
@@ -41,12 +41,12 @@ public class User implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getId() {

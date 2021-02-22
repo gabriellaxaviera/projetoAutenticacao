@@ -17,16 +17,16 @@ public class LoginService {
 
     public void login(UserDto userDto) {
 
-        User usuario = repository.findByCpf(userDto.getCpf());
+        User user = repository.findByCpf(userDto.getCpf());
 
-        if (usuario == null)
+        if (user == null)
         {
-            throw new ResourceNotFoundException("Usuário não encontrado");
+            throw new ResourceNotFoundException("User not found");
         }
         else
         {
-            if (!(usuario.getSenha().equals(userDto.getSenha())))
-                throw new NotAuthorizedException("Senha inválida");
+            if (!(user.getPassword().equals(userDto.getPassword())))
+                throw new NotAuthorizedException("Invalid password");
         }
 
     }
