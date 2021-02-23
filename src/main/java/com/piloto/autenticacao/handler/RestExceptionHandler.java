@@ -98,7 +98,7 @@ public class RestExceptionHandler {
         {
             ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
                     .newBuilder()
-                    .message("Invalid taxpayer identification numbers")
+                    .message("Invalid fields")
                     .build();
 
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
@@ -108,7 +108,7 @@ public class RestExceptionHandler {
         {
             ExceptionDetails exceptionDetails = ExceptionDetails.ExceptionDetailsBuilder
                     .newBuilder()
-                    .message("Try one with at least 8 characters")
+                    .message("Invalid fields")
                     .build();
 
             return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);

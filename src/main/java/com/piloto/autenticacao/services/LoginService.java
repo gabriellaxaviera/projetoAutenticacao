@@ -28,6 +28,5 @@ public class LoginService {
             if (!(user.getPassword().equals(userDto.getPassword())))
                 throw new NotAuthorizedException("Invalid password");
         }
-
     }
 }
