@@ -19,9 +19,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = {"application/json"})
     public ResponseEntity login(@Valid @RequestBody UserDto userDto) {
-
         loginService.login(userDto);
-
         return ResponseEntity.ok().body("You have successfully logged in");
     }
 

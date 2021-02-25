@@ -8,7 +8,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-
 import javax.validation.UnexpectedTypeException;
 
 @ControllerAdvice
@@ -92,7 +91,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Object handleCPFvalid(MethodArgumentNotValidException valid){
+    public ResponseEntity<?> handleCPFvalid(MethodArgumentNotValidException valid){
 
         if (valid.getMessage().contains("default message [invalid Brazilian individual taxpayer registry number (CPF)]]"))
         {
