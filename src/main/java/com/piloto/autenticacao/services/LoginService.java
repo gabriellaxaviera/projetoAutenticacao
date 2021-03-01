@@ -23,9 +23,8 @@ public class LoginService {
         {
             throw new ResourceNotFoundException("User not found");
         }
-        else
+        else if (!(user.getPassword().equals(userDto.getPassword())))
         {
-            if (!(user.getPassword().equals(userDto.getPassword())))
                 throw new NotAuthorizedException("Invalid password");
         }
 

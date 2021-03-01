@@ -17,9 +17,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = {"application/json"})
     public ResponseEntity registration(@Valid @RequestBody User user){
-
         service.insert(user);
-
         return ResponseEntity.ok("User successfully registered");
     }
     

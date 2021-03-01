@@ -2,12 +2,14 @@ package com.piloto.autenticacao.model;
 
 
 import org.hibernate.validator.constraints.br.CPF;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
+
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User implements Serializable {
@@ -24,14 +26,32 @@ public class User implements Serializable {
     @Size(min = 8, message = "Try one with at least 8 characters")
     private String password;
 
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+
     public User() {
     }
 
-    public User(String cpf, String password, Integer id) {
+    public User(Integer id, String cpf, String password) {
+        this.id = id;
         this.cpf = cpf;
         this.password = password;
-        this.id = id;
     }
+
+    public User(String cpf,String password) {
+        this.cpf = cpf;
+        this.password = password;
+    }
+
+    public User(User user)
+    {
+        super();
+        this.cpf = cpf;
+        this.password = password;
+        this.roles = user.getRoles();
+    }
+
 
     public String getCpf() {
         return cpf;
@@ -55,5 +75,13 @@ public class User implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
