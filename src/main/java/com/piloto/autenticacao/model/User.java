@@ -2,14 +2,13 @@ package com.piloto.autenticacao.model;
 
 
 import org.hibernate.validator.constraints.br.CPF;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "users")
 public class User implements Serializable {
 
     @Id
