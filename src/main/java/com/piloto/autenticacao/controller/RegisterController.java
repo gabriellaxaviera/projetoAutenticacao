@@ -15,7 +15,7 @@ public class RegisterController {
     @Autowired
     private RegisterService service;
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = {"application/json"})
+    @RequestMapping(value = "/registration", method = RequestMethod.POST, produces = {"application/json"})
     public ResponseEntity registration(@Valid @RequestBody User user){
 
         service.insert(user);
